@@ -1,0 +1,19 @@
+{
+	"ImportPath": "github.com/veloandy/webserver",
+	"GoVersion": "go1.10",
+	"GodepVersion": "v80",
+	"Packages": [
+		"./..."
+	],
+	"Deps": [
+		{
+			"ImportPath": "github.com/antchfx/xpath",
+			"Rev": "3468085e490184bdba681e006b2b3c1baa54b564"
+		},
+		{
+			"ImportPath": "github.com/subchen/go-xmldom",
+			"Comment": "v1.1.1",
+			"Rev": "63d6b9900b1f66717120d456082cb10d267e324a"
+		}
+	]
+}
