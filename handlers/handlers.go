@@ -5,9 +5,9 @@ import (
 	"html"
 	"io/ioutil"
 	"net/http"
-	"strings"
 	"path/filepath"
-  "runtime"
+	"runtime"
+	"strings"
 )
 
 // HomePageHandler handles request/response to the home page of our lame, fake webserver
@@ -20,8 +20,8 @@ func HomePageHandler(w http.ResponseWriter, r *http.Request) {
 //  Returns a 500 if this parameter isn't specified or if it can't load the file.
 func XMLHandler(w http.ResponseWriter, r *http.Request) {
 	filename := r.URL.Query().Get("xmlfile")
-        filename = strings.Replace(filename, "/", "", -1) // trim out path separators so they can't traverse dirs
-        filename = strings.Replace(filename, "..", "", -1) // trim out .. so they can't traverse dirs
+	filename = strings.Replace(filename, "/", "", -1)  // trim out path separators so they can't traverse dirs
+	filename = strings.Replace(filename, "..", "", -1) // trim out .. so they can't traverse dirs
 	if filename == "" {
 		w.WriteHeader(http.StatusInternalServerError)
 		w.Write([]byte("Invalid xmlfile parameter specified"))
@@ -29,11 +29,10 @@ func XMLHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// get project's data dir:
-	 _, b, _, _ := runtime.Caller(0)
-	 basepath   := filepath.Dir(b)
-	 //base       := filepath.Base(b)
-	 datadir := basepath + "/../data/"
-
+	_, b, _, _ := runtime.Caller(0)
+	basepath := filepath.Dir(b)
+	//base       := filepath.Base(b)
+	datadir := basepath + "/../data/"
 
 	// try to read ugly.xml file from data dir.  Throw 500 if we can't
 	dat, err := ioutil.ReadFile(datadir + filename)
